@@ -1,0 +1,367 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Ansibleことはじめ</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
+
+    <style type="text/css">
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6 {
+        text-transform: none;
+      }
+
+      .scrollable {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: 700px;
+      }
+    </style>
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/sol.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown
+          data-separator="\n---\n$"
+          data-separator-vertical="\n--\n"
+          class="scrollable">
+          <script type="text/template">
+
+# Ansibleことはじめ
+
+<!--
+
+## Themes
+
+reveal.js comes with a few themes built in:
+
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
+-->
+
+---
+
+#### Ansibleって何？
+#### 構成管理ツール
+#### なぜAnsible？
+#### Ansibleでどうやって構成書くの？
+#### PlayBookに書ける基本要素
+#### モジュール
+#### Role
+#### Roleの構成
+#### Roleの変数
+#### ハンドラー
+#### Taskで利用できる制御構造
+#### Inventry単位の変数
+#### 変数の優先順位
+#### vagrantのプロビジョニングは。。
+
+---
+
+
+## Ansibleは<a>構成管理ツール</a>です！
+
+---
+
+## 構成管理ツールって何？
+
+コードでインフラ/ミドルウェア構成を記述できるツール
+
+### <a>作業効率UP！</a>
+
+間違えない/速い/深夜実行とかもできる
+
+### <a>サービス/ツール間の連携</a>
+ - バージョン管理: Git
+ - 自動テスト: Serverspec
+ - CI: CircleCI
+ - 監視: Zabbix
+ - チャット: Slack
+
+---
+
+## なぜAnsible？
+
+競合にChefなどあるが...
+
+* <a>エージェントレス</a>： 管理マシンの制限が少ない（SSH接続さえできればよい）
+* YAML： 誰が書いても似た記述（≒制約強い）。非プログラマでも読みやすい。
+
+※ エージェント型ツールの場合、管理マシンに予めエージェントをインストールする必要がある（プロビジョニングのためのプロビジョニング）
+
+---
+
+## Ansibleでどうやって構成書くの？
+
+最低限必要↓↓
+
+### <a>Inventory</a>
+
+デプロイ対象のホストを定義
+
+### <a>PlayBook</a>
+
+デプロイ内容を定義
+
+---
+
+## PlayBookに書ける超基本要素
+
+### <a>Play</a>
+
+所属するTask全体への設定（ホストのグループなど指定）
+
+### <a>Task</a>
+
+モジュールを指定してなにがしかの処理実行
+
+---
+
+## <a>モジュール</a>
+
+```
+tasks:
+  - name: nginxインストール
+    apt:
+      name: nginx
+```
+
+モジュール（この場合は `apt` ）にパラメータを渡して様々な処理を実行
+
+組み込みモジュールが無数にあるので、基本的にこれらを組み合わせてタスクを作ればよい（自作もできる）
+
+---
+
+## <a>Role</a>
+
+構成が複雑化 → PlayBookが秘伝タレ化..
+
+### <a>Role＝PlayBookのモジュール化</a>
+
+PlayBookから複数のRoleを組み合わせて利用
+
+複数のプロジェクトで共有可能！
+
+（変数がRole間でかぶらない工夫が必要）
+
+標準構成を使えば読みやすい、書きやすい！
+
+---
+
+## Roleの構成
+
+```
+├── myweb.yml
+└── roles
+    └── nginx
+        ├── defaults
+        │   └── main.yml
+        ├── files
+        │   └── web.ini
+        ├── handlers
+        │   └── main.yml
+        ├── meta
+        │   └── main.yml
+        ├── tasks
+        │   └── main.yml
+        ├── templates
+        │   └── index.html
+        └── vars
+             └── main.yml
+```
+
+---
+
+## Role用変数
+
+vars/main.yml
+
+```
+---
+nginx_service_name: nginx
+```
+
+tasks/main.yml
+```
+---
+- name: 起動/自動起動設定
+  service:
+    name: "{{ nginx_service_name }}"
+    state: started
+    enables: true
+```
+
+---
+
+## ハンドラー
+
+tasks/main.yml
+```
+- name: nginx.conf展開
+  template
+    src: nginx.fonf.j2
+    dest: /etc/nginx/nginx.conf
+  vars:
+    nginx_default_port: 80
+  notify:
+    - リロード
+```
+
+handlers/main.yml
+```yml
+- name: リロード
+  service:
+    name: nginx
+    state: reloaded
+```
+
+タスクによって構成に変化があった場合のみ、 `notify` で指定されているハンドラーが実行される
+
+---
+
+## Taskで利用できる制御構造
+
+### シンプルなループ： `with_items`
+
+```yml
+- name: ユーザ作成
+  user:
+    name: "{{ item.name }}"
+    uid: "{{ item.uid }}"
+  with_items:
+    - { name: ichiro, uid: 1001 }
+    - { name: jiro, uid: 1002 }
+    - { name: saburo, uid: 1003 }
+```
+
+---
+
+### 複数タスクのまとめ： `block`
+
+```
+- block:
+  - name: エラーが発生するかもしれないタスク
+    command: /user/local/bin/maybe-error
+  - name: サービス起動
+    service:
+      name: some-service
+      state: started
+  rescue:
+    - name: 切り戻し処理
+      command: /user/local/bin/clean-up
+    - name: デプロイ失敗
+      fail:
+  always:
+    - name: hoge
+      debug:
+        msg: hoge
+```
+
+ブロック単位で処理制御（実行有無、変数定義）
+
+例外処理
+
+---
+
+## Inventry指定での変数
+
+```
+├── hosts
+├── group_vars
+│  ├── all.yml
+│  ├── web.yml
+│  └── db.yml
+└── host_vars
+    ├── web1.host.yml
+    ├── web2.host.yml
+    └── db.host.yml
+```
+
+グループごと、ホストごとに変数定義
+
+---
+
+## 変数の優先順位
+
+基本は<a>「狭いブロックが優先！」</a>
+
+* エクストラ変数（コマンドラインで指定）
+* ...
+* タスク変数
+* ...
+* Roleの `vars` で定義した変数
+* ...
+* Inventryの `host_vars` で定義した変数
+* Inventryの `group_vars` で定義した変数
+* ...
+* Roleの `defaults` で定義した変数
+
+---
+
+## VagrantのプロビジョニングはPlayBookで書ける
+
+```ruby
+Vagrant.configure(2) do |config|
+  config.vm.box = 'ubuntu/trusty64'
+
+  ...
+
+  config.vm.provision 'ansible' do |ansible|
+    ansible.playbook = 'playbook.yml'
+  end
+end
+```
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+                transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>

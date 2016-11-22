@@ -1,0 +1,203 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Railsの風が吹いたら確認したい、Rubyのモジュールシステム</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
+
+    <style type="text/css">
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6 {
+        text-transform: none;
+      }
+    </style>
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/sol.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown
+          data-separator="\n---\n$"
+          data-separator-vertical="\n--\n">
+          <script type="text/template">
+
+# Railsの風が吹いたら確認したい、Rubyのモジュールシステム
+
+<!--
+
+## Themes
+
+reveal.js comes with a few themes built in:
+
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
+
+## Transition Styles
+
+You can select from different transitions, like: <br>
+<a href="?transition=none#/transitions">None</a> -
+<a href="?transition=fade#/transitions">Fade</a> -
+<a href="?transition=slide#/transitions">Slide</a> -
+<a href="?transition=convex#/transitions">Convex</a> -
+<a href="?transition=concave#/transitions">Concave</a> -
+<a href="?transition=zoom#/transitions">Zoom</a>
+-->
+
+---
+
+#### requireって何？
+#### ロード対象パス
+#### require_relative
+#### requireとloadの違い
+#### autoload
+#### Bundlerとrequire
+#### Railsの場合
+#### inludeって？
+
+---
+
+## requireって何？
+
+指定したファイルの中身を実行する。
+
+```ruby
+require "./lib"
+```
+
+---
+
+## ロード対象パス
+
+```shell
+ruby -e 'puts $LOAD_PATH'
+```
+
+---
+
+## require_relative
+
+require: カレントディレクトリからの相対パス指定可能
+require_relative: 記述ファイルからの相対パス指定可能
+
+---
+
+## load
+
+<a>
+* 基本的にrequireと同じ
+</a>
+* loadでは、指定が何度でも読み込む
+* 基本的にrequireを使うべし
+
+対話型シェルではloadを使うのもあり。
+load先を更新した後、再度更新することが可能。
+
+---
+
+## require/load先のローカル変数
+
+require/load元からは見えない。
+
+---
+
+## autoload
+
+* require/loadは、即座にファイルの中身全てを実行してしまう
+* autoloadの場合、指定したClassを使おうとしたときに読み込まれる
+
+---
+
+## Bundlerとrequire
+
+* BundlerはRuby用のライブラリ管理ツール
+* `Bundler.require` で、一括require可能
+
+```Gemfile
+source 'http://rubygems.org'
+
+gem 'hashie'
+```
+
+```shell
+bundle install --path vendor/bundle
+```
+
+```rb
+require 'bundler'
+Bundler.require
+
+employee = Hashie::Mash.new
+```
+
+---
+
+## Rails 4までのautoload
+
+config/application.rb
+
+```
+# to auto load lib/ directory
+config.autoload_paths += %W(#{config.root}/lib)
+```
+
+---
+
+## includeって？
+
+Moduleの機能をClass/Moduleにミックスインする。
+
+includeしたいClass/Moduleは、先にrequireしておかないといけない。
+
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+                transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
