@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>プロジェクトマネージメントスキル紹介</title>
+    <meta name="description" content="slide for project management skils">
+    <meta name="author" content="nakahashi">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+      .cap { text-transform: capitalize; }
+      .lower { text-transform: lowercase; }
+      .rm {
+        width: 1600px;
+        margin-left: auto;
+      }
+
+      /* 吹き出し */
+      .parent2 {
+          background: #dd5d00;
+          padding: 0;
+          position: relative;
+      }
+      .parent2 .child2 {
+          background: #dd5d00;
+          position: relative;
+
+          /*テキストの補正*/
+          color: #fff;
+          padding: 10px 0
+      }
+      .parent2 .child2:after {
+          content: ' ';
+          width: 0;
+          height: 0;
+          position: absolute;
+          border:10px solid transparent;
+          border-bottom-color: #dd5d00;
+          bottom: 100%;
+          left: 50%;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <div class="reveal">
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+        <section data-markdown
+          data-separator="\n---\n$"
+          data-vertical="\n--\n">
+          <script type="text/template">
+
+## プロジェクトマネジメントスキル紹介
+<br>
+#### ～ コストマネジメント計画 ～
+#### ～ リスクマネジメント計画 ～
+
+---
+
+### プロジェクトマネジメントプロセス群
+
+<div style="position: relative;">
+  <img src="images\process.jpg" width="590" height="400" style="border: none;" />
+  <div class="fragment">
+    <div style="position: absolute; top: 173px; left: 343px; width: 126px; height: 54px; border: 6px solid #ff0000; border-style: dashed;"></div>
+    <div style="position: absolute; width: 28%; top: 240px; left: 300px;">
+      <div class="parent2">
+        <p class="child2"><small>コストマネジメント計画<br>リスクマネジメント計画</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="rm"><small>参考 ※1</small></div>
+
+---
+
+### コストマネジメント計画
+
+<img src="images\cost.png" style="border: none;" />
+#### ⇒　いわゆる<a>「見積もり」</a>
+<div class="rm"><small>参考 ※2</small></div>
+<!-- パスは'/'ではなく、'\'でないといけない。しかも画像はフォルダに入れないといけない。。 -->
+
+---
+
+## どうやって見積もりするの？
+ * ファンクションポイント法（複雑度による重みづけ）
+ * ボトムアップ見積もり（詳細化したWBSからの積上）
+ * etc..
+
+プロジェクトにあった見積もり方法を選ぶことが重要
+
+---
+
+## 予算化
+期間ごとの実行予算を算出する
+
+→ X:時間, Y:金額のグラフになる
+
+<br>
+<h4 class="fragment"><a>EVMにおけるPVとして使用可能！！</a></h2>
+
+---
+
+## リスクマネジメント計画
+
+　⇒　リスクと対応策を列挙し、登録簿を作る
+
+---
+
+### 登録簿の例
+|事象   |兆候|確率|影響|
+|:----:|:----:||:----:||:----:|
+|要件定義の遅れ|合意に時間がかかりがち|大|大|
+|業務経験不足|進捗申告の信頼性が低い|小|大|
+|新規採用FWの性能に不安|情報収集の分析結果|小|大|
+
+---
+
+### 対応計画
+<img src="images\risk.jpeg" style="border: none;" />
+<div class="rm"><small>参考 ※3</small></div>
+
+---
+
+#### プロジェクトマネジメントプロセス群
+
+<div style="position: relative;">
+  <img src="images\process.jpg" width="590" height="400" style="border: none;" />
+    <div style="position: absolute; top: 173px; left: 343px; width: 126px; height: 54px; border: 6px solid #ff0000; border-style: dashed;"></div>
+    <div style="position: absolute; width: 28%; top: 240px; left: 300px;">
+      <div class="parent2">
+        <p class="child2"><small>コストマネジメント計画<br>リスクマネジメント計画</small></p>
+      </div>
+    </div>
+</div>
+
+---
+
+<section data-background="#e5f70b">
+  <h2>「実行」に間違いがあってもなんとかなるが、「計画」で間違うと代償は大きい。</h2>
+  <h2 class="fragment"><a>⇒ PMの職務と責任は「計画」に詰まっている！</a></h2>
+</section>
+
+---
+
+#### 参考
+ * (※1) [アジャイル時代のプロジェクトマネジメント入門 - @IT](http://www.atmarkit.co.jp/ait/articles/1410/23/news027.html)
+ * (※2) [プロジェクトマネージャ 合格テキスト 2015年度](http://www.amazon.co.jp/%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%83%9E%E3%83%8D%E3%83%BC%E3%82%B8%E3%83%A3-%E5%90%88%E6%A0%BC%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88-2015%E5%B9%B4%E5%BA%A6-%E6%83%85%E5%A0%B1%E5%87%A6%E7%90%86%E6%8A%80%E8%A1%93%E8%80%85%E8%A9%A6%E9%A8%93%E5%AF%BE%E7%AD%96-TAC%E6%83%85%E5%A0%B1%E5%87%A6%E7%90%86%E8%AC%9B%E5%BA%A7/dp/4813257631)
+ * (※3) [リスクマネジメントってみんな言うけど](http://www.kankyo-business.jp/column/008338.php)
+
+          </script>
+        </sectin>
+      </div>
+    </div>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+    <script>
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'convex', // none/fade/slide/convex/concave/zoom
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+    </script>
+  </body>
+</html>
