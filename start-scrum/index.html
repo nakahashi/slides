@@ -1,0 +1,246 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>スクラムことはじめ</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/sky.css">
+
+    <style type="text/css">
+      .reveal h1,
+      .reveal h2,
+      .reveal h3,
+      .reveal h4,
+      .reveal h5,
+      .reveal h6 {
+        text-transform: none;
+      }
+
+      .scrollable {
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        height: 700px;
+      }
+    </style>
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/sol.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown
+          data-separator="\n---\n$"
+          data-separator-vertical="\n--\n"
+          class="scrollable">
+          <script type="text/template">
+
+# スクラムことはじめ
+
+<!--
+
+## Themes
+
+reveal.js comes with a few themes built in:
+
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/black.css'); return false;">Black (default)</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/white.css'); return false;">White</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/league.css'); return false;">League</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/sky.css'); return false;">Sky</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/beige.css'); return false;">Beige</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/simple.css'); return false;">Simple</a> <br>
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/serif.css'); return false;">Serif</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/night.css'); return false;">Night</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/moon.css'); return false;">Moon</a> -
+<a href="#" onclick="document.getElementById('theme').setAttribute('href','css/theme/solarized.css'); return false;">Solarized</a>
+-->
+
+---
+
+#### スクラムって何？
+#### なぜスクラム？
+#### 「アジャイル」と違う？
+#### スクラムでの開発の流れ
+#### スプリントプランニング
+#### デイリースクラム
+#### スプリントレビュー
+#### スプリントレトロスペクティブ
+#### プロダクトオーナー/開発チーム/スクラムオーナー
+#### ベロシティ
+#### プランニングポーカー
+
+---
+
+# スクラムって何？
+
+## <a>変化の激しい激しい問題に対応するためのフレームワーク</a>です！
+
+---
+
+# なぜスクラム？
+
+<a>
+* 爆発的な開発効率
+</a>
+* 軽量（取り入れやすい）
+* チームで自律的に問題に対処できる
+* フィードバックが組み込まれている
+
+---
+
+## 「アジャイル」と違う？
+
+### 「アジャイルソフトウェア開発」とは
+
+* プロセスやツールよりも個人と対話
+* 包括的なドキュメントよりも動くソフトウェア
+* 契約交渉よりも顧客との強調
+* 計画に従うことよりも変化への対応
+
+<a>
+→ 「スクラム」は、これらの価値観を実践するためのフレームワーク
+</a>
+
+---
+
+## スクラムでの開発の流れ
+
+![](flow.png)
+
+---
+
+## スプリントプランニング
+
+* プロジェクトバックログ（やることリスト）から優先度の高いものを選び、次のスプリントで取り組むタスクを選ぶ
+* スプリント完了の条件はここで確認しておく
+
+※ 原則的に、スプリント中に取り組むタスクは変えないようにする
+
+---
+
+## タスク切り替えのコスト
+
+![](switch.png)
+
+---
+
+## デイリースクラム
+
+開発チーム全員が、以下の項目を報告する。15分以内に！
+
+* 開発チームがスプリントゴールを達成するために、私が昨日やったことは何か？
+* 開発チームがスプリントゴールを達成するために、私が今日やることは何か？
+* 私や開発チームがスプリントゴールを達成するときの障害物を目撃したか？
+
+<a>開発ミーティングは基本的にこれだけ。障害を効率的に排除できるようにする。いわゆる「進捗確認」の場ではない。</a>
+
+---
+
+## スプリントレビュー
+
+* 「完了※」の成果物（動くソフトウェア）をレビュー
+* ステークホルダー誰でも参加。（ソフトウェア利用者はなるべくさんかすべき）
+
+---
+
+## スプリントレトロスペクティブ
+
+* うまくいった点
+* もっとうまくできたはずの点
+* 改善できる点
+
+<a>「Who」ではなく「How」を問おう</a>
+
+---
+
+## プロダクトオーナー
+
+<a>プロダクトの責任者</a>
+
+* プロダクトの価値最大化
+* プロダクトバックログ管理
+
+---
+
+## 開発チーム
+
+<a>開発の責任者</a>
+
+* テスティングやビジネス分析のような領域であっても、スクラムは開発チームのサブチームを認めていない。このルールに例外はない。
+* 開発チームのメンバーに専門能力や専門分野があったとしても、最終的な責任は開発チーム全体が持つ。
+* 3〜9人
+
+---
+
+## スクラムマスター
+
+<a>スクラム運営の責任者</a>
+
+* プロダクトオーナー/開発チームの支援
+* スクラムイベントのファシリテート
+
+---
+
+## ベロシティ
+
+* タスクの規模を示す数値
+<a>
+* いわゆる「工数」ではない（あくまでそのスクラムチーム内のタスク間での相対的な値）
+</a>
+* フィボナッチ数（1/2, 1, 3, 3, 5, 8, 13, 21...）から選ぶというベストプラクティスがある
+* スプリント毎に消化したベロシティ値と計測していくと、見積もりの正確性を上げられる
+
+---
+
+## プランニングポーカー
+
+![](cards.jpg)
+
+---
+
+# まとめ
+
+## フィードバックを得られやすい！
+
+## 開発に集中できる！
+
+## <a>導入したい！</a>
+
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+                transition: 'concave', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
